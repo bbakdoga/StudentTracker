@@ -1,0 +1,70 @@
+{
+  "groups": [
+    {
+      "type": "Class",
+      "name": "Biology",
+      "section": "002",
+      "start_period": "Fall",
+      "start_year": "2019",
+      "end_period": "Fall",
+      "end_year": "2019",
+      "students": [
+        {
+          "name": "Jack",
+          "unity": "jmbaugh",
+          "email": "jmbaugh@ncsu.edu",
+          "role": "Student",
+          "start_period": "Fall",
+          "start_year": "2019",
+          "end_period": "Fall",
+          "end_year": "2019",
+          "interactions": 5
+        },
+        {
+          "name": "Mike",
+          "unity": "mpwilli",
+          "email": "mpwilli@ncsu.edu",
+          "role": "Student",
+          "start_period": "Fall",
+          "start_year": "2019",
+          "end_period": "Fall",
+          "end_year": "2019",
+          "interactions": 8
+        }
+      ]
+    },
+    {
+      "type": "Club",
+      "name": "Robotics",
+      "section": null,
+      "start_period": "Fall",
+      "start_year": "2017",
+      "end_period": "Spring",
+      "end_year": "2020",
+      "students": [
+        {
+          "name": "Steve",
+          "unity": "sbmiche",
+          "email": "sbmiche@ncsu.edu",
+          "role": "President",
+          "start_period": "Spring",
+          "start_year": "2019",
+          "end_period": "Fall",
+          "end_year": "2019",
+          "interactions": 3
+        },
+        {
+          "name": "Kevin",
+          "unity": "ksport",
+          "email": "ksport@ncsu.edu",
+          "role": "Member",
+          "start_period": "Fall",
+          "start_year": "2019",
+          "end_period": "",
+          "end_year": "",
+          "interactions": 5
+        }
+      ]
+    }
+  ]
+}

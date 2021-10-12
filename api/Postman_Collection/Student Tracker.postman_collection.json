@@ -1,0 +1,1541 @@
+{
+	"info": {
+		"_postman_id": "cbb483a2-dafe-44bd-bae7-1fc91b39099a",
+		"name": "Student Tracker",
+		"description": "Collection of Student Tracker Backend calls.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetUserSpecific",
+			"item": [
+				{
+					"name": "GetUserGroups",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Groups Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Group 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserGroupInteractions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Interactions Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Interaction 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].int_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User First Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_first_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Last Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_last_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Email Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_email).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Unity ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_unity_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/9/interactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"9",
+								"interactions"
+							]
+						},
+						"description": "Get interactions for a group based on a group ID."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"User Length Eqauls 1\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.equal(1);",
+									"});",
+									"",
+									"pm.test(\"User Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User First Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_first_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Last Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_last_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Unity ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_unity_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Email Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_email).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Preferred Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_preferred_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Preferred Pronouns Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_preferred_pronouns).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/users/18",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"users",
+								"18"
+							]
+						},
+						"description": "Gets a user that is associated with the currently logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserUserInteractions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Interactions Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Interaction 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].int_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User First Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_first_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Last Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_last_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Email Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_email).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Unity ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_unity_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Note Title Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].not_title).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Note Text Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].not_text).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/users/19/interactions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"users",
+								"19",
+								"interactions"
+							]
+						},
+						"description": "Get the Interations for a User that is associated with the currently logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "GetInteractionFiles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/1/files",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"1",
+								"files"
+							]
+						},
+						"description": "Returns list of files for the interaction that is selected."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserGroup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Groups Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Group 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"1"
+							]
+						},
+						"description": "Get an individual group that is associated with the logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserNotes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/notes/26",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"notes",
+								"26"
+							]
+						},
+						"description": "Gets notes for userInteraction"
+					},
+					"response": []
+				},
+				{
+					"name": "DownloadInteractionFile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/1/file/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"1",
+								"file",
+								"11"
+							]
+						},
+						"description": "Gets File for specific interaction."
+					},
+					"response": []
+				}
+			],
+			"description": "Get Request that are specific to an individual user."
+		},
+		{
+			"name": "PostRequests",
+			"item": [
+				{
+					"name": "PostUserGroup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Groups Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Group 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grp_name\": \"Homeschool\",\n    \"grp_section\": 3,\n    \"grp_gtp_id\": 1,\n    \"grp_start_prd_id\": 2,\n    \"start_year\": 2021,\n    \"grp_end_prd_id\": 2,\n    \"end_year\": 2021\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups"
+							]
+						},
+						"description": "Post Request for adding a group to the system under the logged in user."
+					},
+					"response": []
+				},
+				{
+					"name": "PostUserInteraction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Interactions Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Interaction 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].int_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User First Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_first_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Last Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_last_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Email Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_email).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Unity ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_unity_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_name).to.exist;",
+									"});",
+									"",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"grp_id\": 1,\n        \"usr_first_name\": \"FirstName1\",\n        \"usr_last_name\": \"LastName1\",\n        \"usr_email\": \"email1\",\n        \"usr_unity_id\": \"unity1\",\n        \"int_irl_id\": 2,\n\n        \"int_start_prd_id\": 1,\n        \"start_year\": 2021\n    },\n    {\n        \"grp_id\": 2,\n        \"usr_first_name\": \"FirstName2\",\n        \"usr_last_name\": \"LastName2\",\n        \"usr_email\": \"email2\",\n        \"usr_unity_id\": \"unity2\",\n        \"int_irl_id\": 2,\n        \"not_title\": \"Note Title 2\",\n        \"not_text\": \"Note Text 2\",\n        \"int_start_prd_id\": 1,\n        \"start_year\": 2021,\n        \"int_end_prd_id\": 1,\n        \"end_year\": 2021\n    },\n    {\n        \"grp_id\": 1,\n        \"usr_first_name\": \"FirstName3\",\n        \"usr_last_name\": \"LastName3\",\n        \"usr_email\": \"email3\",\n        \"usr_unity_id\": \"unity3\",\n        \"int_irl_id\": 2,\n        \"not_title\": \"Note Title 3\",\n        \"not_text\": \"Note Text 3\",\n        \"int_start_prd_id\": 1,\n        \"start_year\": 2021,\n        \"int_end_prd_id\": 1,\n        \"end_year\": 2021\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								""
+							]
+						},
+						"description": "Adds Interaction for authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "PostUserNote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"not_int_id\": 26,\n    \"not_title\": \"New Title\",\n    \"not_text\": \"Note TExt\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/note",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"note"
+							]
+						},
+						"description": "Posts a note for a user Interaction"
+					},
+					"response": []
+				},
+				{
+					"name": "PostInteractionFile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/juddrollins/Desktop/Dsktp/unknown.png"
+								},
+								{
+									"key": "fil_int_id",
+									"value": " 1",
+									"type": "text"
+								},
+								{
+									"key": "fil_title",
+									"value": " Image",
+									"type": "text"
+								},
+								{
+									"key": "fil_description",
+									"value": "file",
+									"type": "text"
+								},
+								{
+									"key": "fil_name",
+									"value": "file",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/1/file",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"1",
+								"file"
+							]
+						},
+						"description": "Adds a file for an interaction to the database and to the folder system."
+					},
+					"response": []
+				}
+			],
+			"description": "Post Requests"
+		},
+		{
+			"name": "DeleteRequests",
+			"item": [
+				{
+					"name": "DeleteUserInteraction",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/4/interactions/23",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"4",
+								"interactions",
+								"23"
+							]
+						},
+						"description": "Deletes User Interaction"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserGroup",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"3"
+							]
+						},
+						"description": "Deletes Group that is associated with the authenticated user."
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserNote",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/1/notes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"1",
+								"notes",
+								"1"
+							]
+						},
+						"description": "Deletes Interaction note"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteInteractionFile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/1/file/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"1",
+								"file",
+								"8"
+							]
+						},
+						"description": "Deletes a file that is associated with a given interaction. Based on file number and interaction number."
+					},
+					"response": []
+				}
+			],
+			"description": "Delete Requests"
+		},
+		{
+			"name": "GenericGetRequests",
+			"item": [
+				{
+					"name": "InvalidUserAuthentication",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {",
+									"    pm.response.to.have.status(401);",
+									"});",
+									"",
+									"pm.test(\"Response Status Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Response Status is 401\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.status).to.equal(401);",
+									"});",
+									"",
+									"pm.test(\"Response Message Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Response Message is Invalid Authentication\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.equal(\"Invalid Authentication.\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/users/invalid/groups",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"invalid",
+								"groups"
+							]
+						},
+						"description": "Request to server with invalid authentication in path."
+					},
+					"response": []
+				},
+				{
+					"name": "GetUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Groups Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Returns the user ID based on the unity id param."
+					},
+					"response": []
+				},
+				{
+					"name": "GetPeriods",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Period Length Greater Than 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Period ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].prd_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Period Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].prd_name).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/periods",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"periods"
+							]
+						},
+						"description": "Gets all periods to display when adding user."
+					},
+					"response": []
+				},
+				{
+					"name": "GetGroupTypes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Group Type Length Greater Than 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Group Type Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Type ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Period Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/group-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"group-types"
+							]
+						},
+						"description": "Get all group types for adding a new group."
+					},
+					"response": []
+				},
+				{
+					"name": "GetInteractionRoles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Length Greater Than 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_name).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/api/interaction-roles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"interaction-roles"
+							]
+						},
+						"description": "Get List of interaction roles for when adding interactions."
+					},
+					"response": []
+				}
+			],
+			"description": "Requests that are not specific to an individual user."
+		},
+		{
+			"name": "PutRequests",
+			"item": [
+				{
+					"name": "PutUserGroup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Groups Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Group 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grp_name\": \"zzz\",\n    \"grp_section\": 3,\n    \"grp_gtp_id\": 1,\n    \"grp_start_prd_id\": 2,\n    \"start_year\": 2021,\n    \"grp_end_prd_id\": 2,\n    \"end_year\": 2021\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"1"
+							]
+						},
+						"description": "Edits group Information"
+					},
+					"response": []
+				},
+				{
+					"name": "PutUserInteraction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"pm.test(\"Interactions Length > 0\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.length).to.greaterThan(0);",
+									"});",
+									"",
+									"pm.test(\"Interaction 0 Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0]).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].int_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].grp_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User First Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_first_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Last Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_last_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Email Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_email).to.exist;",
+									"});",
+									"",
+									"pm.test(\"User Unity ID Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].usr_unity_id).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Interaction Role Name Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].irl_name).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Note Title Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].not_title).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Note Text Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].not_text).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group Start Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].start_year).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Period Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_period).to.exist;",
+									"});",
+									"",
+									"pm.test(\"Group End Year Exists\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].end_year).to.exist;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"grp_id\": 1,\n    \"usr_id\": 3,\n    \"usr_first_name\": \"nope\",\n    \"usr_last_name\": \"npe\",\n    \"usr_email\": \"gmailllll\",\n    \"usr_unity_id\": \"hjrolli2\",\n    \"int_irl_id\": 2,\n    \"not_title\": \"zzznotetitle\",\n    \"not_text\": \"zznotetext\",\n    \"int_start_prd_id\": 1,\n    \"start_year\": 2025,\n    \"int_end_prd_id\": 1,\n    \"end_year\": 2025\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/groups/1/interactions/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"groups",
+								"1",
+								"interactions",
+								"8"
+							]
+						},
+						"description": "Updates Interaction details "
+					},
+					"response": []
+				},
+				{
+					"name": "PutUserNote",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"not_title\": \"zzznotetitle\",\n    \"not_text\": \"zznotetext\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/api/users/6/interactions/25/notes/15",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"users",
+								"6",
+								"interactions",
+								"25",
+								"notes",
+								"15"
+							]
+						},
+						"description": "Updates user note"
+					},
+					"response": []
+				}
+			],
+			"description": "Put Requests for Student Tracker."
+		}
+	]
+}

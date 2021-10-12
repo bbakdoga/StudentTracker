@@ -1,0 +1,86 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    image: mariadb
+    ports: 
+      - 3307:3306
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./db/init_data.sql:/docker-entrypoint-initdb.d/02-init_data.sql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+
+  api:
+    container_name: api
+    build: ./api
+    volumes:
+      - ./data/api:/usr/src/data/api
+      - ./api/app.js:/usr/src/app/app.js
+      - ./api/config.js:/usr/src/app/config.js
+      - ./api/public:/usr/src/app/public
+      - ./api/routes:/usr/src/app/routes
+      - ./api/database:/usr/src/app/database
+      - ./api/util:/usr/src/app/util
+      - ./api/error:/usr/src/app/error
+      - ./api/controller:/usr/src/app/controller
+      - ./api/services:/usr/src/app/services
+      - ./api/test:/usr/src/app/test
+      - ./api/babel.config.js:/usr/src/app/babel.config.js
+      - ./api/jest.config.js:/usr/src/app/jest.config.js
+      - ./api/runApi.sh:/usr/src/app/runApi.sh
+      - ./api/content:/usr/src/app/content
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - TEST=${TEST}
+      - AUTHENTICATED_USR=${AUTHENTICATED_USR}
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
+    # command: sh -c "chmod +x /usr/src/app/runApi.sh &&
+    #                 /usr/src/app/runApi.sh &&
+    #                 exec myexecutable"
+    depends_on:
+      - "db"
+
+  app:
+    container_name: app
+    build: ./app
+    volumes:
+      - ./app/runApp.sh:/usr/src/app/runApp.sh
+      - ./app/public/serviceWorker.js:/usr/src/app/public/serviceWorker.js
+      - ./app/src:/usr/src/app/src
+      - ./app/test:/usr/src/app/test
+      - ./app/babel.config.js:/usr/src/app/babel.config.js
+      - ./app/jest.config.js:/usr/src/app/jest.config.js
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - TEST=${TEST}
+    restart: unless-stopped
+    # command: sh -c "chmod +x /usr/src/app/runApp.sh && 
+    #                 /usr/src/app/runApp.sh && 
+    #                 exec myexecutable"
+    depends_on:
+      - "api"
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    restart: unless-stopped
+    depends_on:
+      - "api"
+      - "app"
